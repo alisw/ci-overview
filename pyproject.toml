@@ -1,0 +1,38 @@
+[project]
+name = "alice-ci-overview"
+description = "A web server showing an overview of the ALICE CI system"
+dynamic = ["version"]
+readme = "README.md"
+# We need __future__.annotations (3.7+).
+# We use the walrus operator ":=" (3.8+).
+requires-python = ">=3.8"
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+  "Operating System :: OS Independent",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: Quality Assurance",
+]
+# requests + requests_toolbelt for gql.transport.requests.RequestsHTTPTransport.
+dependencies = ["gql", "requests", "requests_toolbelt"]
+
+[project.scripts]
+alice-ci-overview = "ci_overview.terminal:main"
+alice-ci-overview-http = "ci_overview.http:main"
+
+[[project.authors]]
+name = "Timo Wilken"
+email = "timo.wilken@cern.ch"
+
+[project.urls]
+Homepage = "https://github.com/alisw/ci-overview"
+
+[build-system]
+requires = ["setuptools>=61.0", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+# Documentation on where setuptools looks for packages:
+# https://setuptools.pypa.io/en/latest/userguide/package_discovery.html#auto-discovery
+
+[tool.setuptools_scm]
+write_to = "src/ci_overview/_version.py"
